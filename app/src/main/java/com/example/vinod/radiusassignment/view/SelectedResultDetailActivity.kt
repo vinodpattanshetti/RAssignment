@@ -21,8 +21,18 @@ class SelectedResultDetailActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     mBinder = DataBindingUtil.setContentView(this, R.layout.activity_main2)
-    mBinder?.tbToolbar?.title = getString(R.string.txt_selected_facilities)
-    mBinder?.tbToolbar?.setTitleTextColor(ContextCompat.getColor(this, R.color.color_white))
+    mBinder?.tbToolbar?.run {
+      title = getString(R.string.txt_selected_facilities)
+      setTitleTextColor(
+        ContextCompat.getColor(
+          this@SelectedResultDetailActivity,
+          R.color.color_white
+        )
+      )
+      setNavigationOnClickListener {
+        finish()
+      }
+    }
     mSelectedFacilityList =
         intent.getSerializableExtra("SelectedFacilityList_Key") as ArrayList<SelectedFacility>
 
@@ -54,6 +64,8 @@ class SelectedResultDetailActivity : AppCompatActivity() {
   private fun type(type: String): Boolean {
     return ((type == mSelectedFacilityList?.get(0)?.facilityType) || (type == mSelectedFacilityList?.get(
       1
-    )?.facilityType) || (mSelectedFacilityList?.size.orDefaultInt() > 2 && type == mSelectedFacilityList?.get(2)?.facilityType))
+    )?.facilityType) || (mSelectedFacilityList?.size.orDefaultInt() > 2 && type == mSelectedFacilityList?.get(
+      2
+    )?.facilityType))
   }
 }

@@ -55,6 +55,9 @@ class FacilityListActivity : AppCompatActivity(), MainViewInterface,
     mSharedPreference = SharedPreference.getInstance()
     mBinder?.tbToolbar?.title = getString(R.string.txt_facilities_list)
     mBinder?.tbToolbar?.setTitleTextColor(ContextCompat.getColor(this, R.color.color_white))
+    mBinder?.tbToolbar?.setNavigationOnClickListener {
+      finish()
+    }
     mBinder?.pbProgress?.showView()
     mMainPresenter = MainPresenter(this@FacilityListActivity)
     mFacilityRepository = FacilityRepository(applicationContext)
@@ -120,7 +123,8 @@ class FacilityListActivity : AppCompatActivity(), MainViewInterface,
         } else if (mSelectedFacilityList?.size == 3 && thirdFirstExclusion) {
           callSecondPage()
         } else {
-          Toast.makeText(this@FacilityListActivity, "Select proper combination", Toast.LENGTH_LONG).show()
+          Toast.makeText(this@FacilityListActivity, "Select proper combination", Toast.LENGTH_LONG)
+            .show()
         }
       }
     }
@@ -157,7 +161,10 @@ class FacilityListActivity : AppCompatActivity(), MainViewInterface,
       // PropertyType
       val propertyTypeAdapter = mMainPresenter?.formListData(mFacilitiesModel, "1")?.let {
         FacilitiesAdapter(
-          it, PROPERTY_TYPE, this@FacilityListActivity, mMainPresenter?.formImageListFortFirstFacilities(
+          it,
+          PROPERTY_TYPE,
+          this@FacilityListActivity,
+          mMainPresenter?.formImageListFortFirstFacilities(
             R.drawable.apartment, R.drawable.condo, R.drawable.boat, R.drawable.land
           )
         )
@@ -167,7 +174,10 @@ class FacilityListActivity : AppCompatActivity(), MainViewInterface,
       // Number of Rooms
       val numberOfRoomsAdapter = mMainPresenter?.formListData(mFacilitiesModel, "2")?.let {
         FacilitiesAdapter(
-          it, NUMBER_OF_ROOMS, this@FacilityListActivity, mMainPresenter?.formImageListForSecondFacilities(
+          it,
+          NUMBER_OF_ROOMS,
+          this@FacilityListActivity,
+          mMainPresenter?.formImageListForSecondFacilities(
             R.drawable.rooms, R.drawable.rooms_not_available
           )
         )
@@ -181,9 +191,7 @@ class FacilityListActivity : AppCompatActivity(), MainViewInterface,
           OTHER_FACILITIES,
           this@FacilityListActivity,
           mMainPresenter?.formImageListFortThirdFacilities(
-            R.drawable.swimming,
-            R.drawable.garden,
-            R.drawable.garage
+            R.drawable.swimming, R.drawable.garden, R.drawable.garage
           )
         )
       }
