@@ -1,7 +1,7 @@
 # RAssignment
 RadisAssignment Application
 
-This is a demo app on hot to implement list facilities on recycler view list using MVP architecture, Live Data, retrofit, Rxjava, Room database, in Kotlin language.
+This is a demo app on how to implement list facilities on recycler view list using MVP architecture, Live Data, retrofit, Rxjava, Room database, in Kotlin language.
 
 Step 1:
  *
